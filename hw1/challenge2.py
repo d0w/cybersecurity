@@ -1,5 +1,5 @@
 
-
+import json
 file = open("challenge2.txt", "r")
 
 cipher = file.read()
@@ -17,19 +17,20 @@ for letter in cipher:
 # create mapping of letter to letter with highest frequency to lowest
 # e.g. {'a': 'e', 'b': 'e', 'c': 'e', ...}''
 
-# most to least 
-# knownFrequencies = ['e', 't', 'a', 'o', 'i', 'n', 's', 'h', 'r', 'd', 'l', 'c', 'u', 'm', 'w', 'f', 'g', 'y', 'p', 'b', 'v', 'k', 'j', 'x', 'q', 'z']
+# most to least frequent
+knownFrequencies = ['e', 't', 'a', 'o', 'i', 'n', 's', 'h', 'r', 'd', 'l', 'c', 'u', 'm', 'w', 'f', 'g', 'y', 'p', 'b', 'v', 'k', 'j', 'x', 'q', 'z']
 
-# # remove spaces in the frequencies
-# del frequencies[" "]
+# remove spaces in the frequencies
+del frequencies[" "]
 
-# mapping = {}
-# for i in range(26):
-#     max_letter = max(frequencies, key=frequencies.get)
-#     mapping[max_letter] = knownFrequencies[i]
-#     del frequencies[max_letter]
+mapping = {}
+for i in range(26):
+    max_letter = max(frequencies, key=frequencies.get)
+    mapping[max_letter] = knownFrequencies[i]
+    del frequencies[max_letter]
+print(json.dumps(mapping, indent=4))
 
-print(cipher[0:100])  
+# print(cipher[0:100])  
 #WBJWUQY CYYMEQG, IOYQCGMKP C GCSO BHMZZ WEQY JHQ PYWNKGI CKG MKJW JHQ BCIJZQ. SCGCS OWSRYQT, JHQ KNY
 #october arrived, spreading a damp chill over the grounds and into the castle
 

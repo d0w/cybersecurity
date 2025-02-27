@@ -11,8 +11,9 @@ with open("challenge3", "rb") as cFile, open("test.txt.zip", "rb") as zip_file:
     zText = zip_file.read()
     
     # XOR corresponding bytes
+
     xor = bytes([a ^ b for a, b in zip(cText, zText)])
-    
+    # print(bytes(zText))
     # print(xor)
 
 # b"LPCEL0DPKE\xb8\x01'SCER0LPCE\x80"
@@ -35,8 +36,8 @@ for pos in range(len(ciphertext)):
 
 # print(keyPart[0:500])
 
-for i in range(50): 
-    print(xor[0:i+1])
+# for i in range(50): 
+#     print(xor[0:i+1])
 
 
 # b''
@@ -73,11 +74,11 @@ for i in range(50):
 #     print("----------------------------")
 
 plaintext = ""
-key = "LPCEL0"
+key = "LPCER0"
 for pos in range(len(ciphertext)):
     plaintext += chr(ciphertext[pos] ^ ord(key[pos % len(key)]))
 
-# print(plaintext)
+print(plaintext)
 
 
 
