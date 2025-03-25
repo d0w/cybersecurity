@@ -1,8 +1,22 @@
+# Author
+Derek Xu 
 # Question 1
+We are given a .pcap file which can be read with packet viewers like Wireshark. After filtering for UDP and TCP packets, I found the following transmissions after what is allegedly an ARP spoofing attack.
 
+![eavesdrop](images/eavesdrop.png)
+
+The data shows that the secret phrase is 3C5211SS0f
+
+![eavesdrop2](images/eavesdrop2.png)
 
 # Question 2
+For this flag, we were told that a broadcast gets sent out on port 5455 so I set packet sniffers looking for packets that were with source port 5455 on UDP and TCP protocols. I found that the following command gave me a transmission every hour.
 
+`nc -l -u 5455 > out.txt &`
+
+![finalweather](images/finalweather.png)
+
+We see that the weather will be a SlushySt0rm. 
 
 # Question 3
 This flag started out with listening for traffic on the specified port (both ingoing and outgoing). With this, I was hoping to find some clues to what the key might be.
@@ -11,7 +25,7 @@ Using `tcpdump src port 5678 or dst port 5678 -w out.pcap`, I was able to listen
 
 ![packets](images/packets.png)
 
-The "gian.97dakls1560" kept repeating and I found out that it was a username + key being sent to thee server at port 5678. So I tried the following using my own username and the weird string of letters I found.
+The "gian.97dakls1560" kept repeating and I found out that it was a username + key being sent to the server at port 5678. So I tried the following using my own username and the weird string of letters I found.
 
 ![encryptedkey](images/encryptedkey.png)
 
@@ -59,7 +73,7 @@ import string
 def timing_attack():
 
     charset = ' ' + string.ascii_letters + string.digits + string.punctuation
-    discovered_password = "B3W4R30fTC"
+    discovered_password = ""
 
     try:
     
@@ -138,7 +152,7 @@ def timing_attack():
 print(timing_attack())
 ```
 
-When using this script, I printed out the response timings of different characters to debug what was going on. I saw that teh response for the "correct" letter came out a second longer.
+When using this script, I printed out the response timings of different characters to debug what was going on. I saw that the response for the "correct" letter came out a second longer.
 
 ![pwdsofar](images/pwdsofar.png)
 
